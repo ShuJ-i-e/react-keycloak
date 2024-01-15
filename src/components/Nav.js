@@ -11,7 +11,7 @@ const Nav = () => {
          <nav className="flex justify-between bg-gray-200 text-blue-800 w-screen">
            <div className="px-5 xl:px-12 py-6 flex w-full items-center">
              <h1 className="text-3xl font-bold font-heading">
-               Keycloak React AUTH.
+               Keycloak React Integration
              </h1>
              <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
                <li>
@@ -43,14 +43,18 @@ const Nav = () => {
                     className="text-blue-800"
                     onClick={() => keycloak.logout()}
                   >
-                    Logout {keycloak.tokenParsed.preferred_username}
-                    {keycloak.hasRealmRole("admin") && '(admin)'}
+                    Logout
                   </button>
                 )}
                     <div>
       <h1>Welcome, {keycloak.authenticated ? keycloak.tokenParsed.preferred_username : 'Guest'}</h1>
+      
       {keycloak.authenticated && (
         <div>
+        {keycloak.tokenParsed.preferred_username}
+        {keycloak.hasRealmRole("admin") && '(admin)'}
+        {keycloak.tokenParsed.realm_access.roles[1]}
+        <br></br>
         Access Token:
           <textarea
             rows="5"
